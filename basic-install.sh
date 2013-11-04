@@ -44,9 +44,6 @@ chown -Rv ubuntu:ubuntu /usr/share/nginx/www
 echo "** Making link to document root..."
 ln -sv /usr/share/nginx/www /var/www
 
-echo "** Enabling start nginx on boot..."
-chkconfig nginx on
-
 echo "** Hurray!"
 
 exit 0
