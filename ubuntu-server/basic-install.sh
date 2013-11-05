@@ -22,6 +22,9 @@ addgroup web
 echo "** Adding user '$newuser' to group 'web'..."
 adduser $new_user web
 
+echo "** Adding user '$newuser' to sudoers...'
+echo "$new_user ALL=(ALL) NOPASSWD:ALL" | tee /etc/hosts
+
 echo "** Changing host name to '$1'..."
 hostname $1
 echo $1 | tee /etc/hostname
