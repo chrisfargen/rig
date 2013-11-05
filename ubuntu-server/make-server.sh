@@ -13,7 +13,7 @@ key_path=$(echo ~)/.ssh/$3.pem
 # http://stackoverflow.com/a/192337/1351736
 me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 #
-git_url="https://raw.github.com/chrisfargen/rig/master"
+git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 
 # Outputting variables
 cat <<EOM

@@ -3,7 +3,7 @@
 # http://stackoverflow.com/a/192337/1351736
 me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 # Shortcut to path
-git_url="https://raw.github.com/chrisfargen/rig/master"
+git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 
 echo "** Attempting to log..."
 echo -e "$(date +'%F %R')\t$me\tJust checkin in!" >> log
