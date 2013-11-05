@@ -10,15 +10,28 @@ echo -e "$(date +'%F %R')\t$me\tJust checkin in!" >> log
 
 # SYSTEM STUFF
 
-#echo "** Creating new user..."
+echo "** Input new user..."
+read new_user
 
-#echo "** Changing host name..."
+echo "** Creating new user '$newuser'..."
+adduser $new_user
+
+echo "** Creating new group 'web'..."
+addgroup web
+
+echo "** Adding user '$newuser' to group 'web'..."
+adduser $new_user web
+
+echo "** Changing host name to '$1'..."
+hostname $1
+echo $1 | tee /etc/hostname
+echo -e "127.0.1.1\t$1" | tee -a /etc/hosts
 
 echo "** Attempting to update system..."
 apt-get update && apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-apt-get install vim git nginx -y
+apt-get install vim git nginx mysql-server -y
 
 # VIM STUFF
 
@@ -33,13 +46,13 @@ wget -N $git_url/fargen-vhost.conf -P /etc/nginx
 wget -N $git_url/basic-vhost -P /etc/nginx/sites-available
 
 echo "** Setting permissions on script..."
-chmod -v +x ~/bin/fargen-site.sh
+chmod -v +x usr/local/bin/fargen-site
 
 echo "** Disable default enabled site..."
 rm /etc/nginx/sites-enabled/*
 
 echo "** Changing ownership on document root..."
-chown -Rv ubuntu:ubuntu /usr/share/nginx/www
+chown -Rv :web /usr/share/nginx/www
 
 echo "** Making link to document root..."
 ln -sv /usr/share/nginx/www /var/www
