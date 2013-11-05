@@ -23,7 +23,7 @@ echo "** Adding user '$newuser' to group 'web'..."
 adduser $new_user web
 
 echo "** Adding user '$newuser' to sudoers...'
-echo "$new_user ALL=(ALL) NOPASSWD:ALL" | tee /etc/hosts
+echo "$new_user ALL=(ALL) NOPASSWD:ALL" | tee /etc/hosts/$new_user
 
 echo "** Changing host name to '$1'..."
 hostname $1
@@ -60,6 +60,9 @@ chown -Rv :web /usr/share/nginx/www
 echo "** Making link to document root..."
 ln -sv /usr/share/nginx/www /var/www
 
+# User preferences
+echo "export EDITOR=/usr/bin/vi" | tee -a /home/$new_user/.profile
+echo "export VISUAL=/usr/bin/vi" | tee -a /home/$new_user/.profile
 echo "** Hurray!"
 
 exit 0
