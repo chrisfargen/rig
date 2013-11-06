@@ -17,5 +17,5 @@ chmod -v +x ~/bin/basic-install.sh
 echo "** Attempting to log..."
 echo -e "$(date +'%F %R')\t$me\tJust checkin in!" >> log
 
-echo "** Now try running: sudo bash ~/basic-install.s"
+echo "** Now try running: sudo bash ~/basic-install.sh [hostname]"
 exit 0

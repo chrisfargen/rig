@@ -2,7 +2,7 @@
 
 #. /path/to/functions
 
-# $1 is instance name
+# $1 is host name
 # $2 is elastic ip address
 # $3 is name of key pair
 
