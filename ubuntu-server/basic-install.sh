@@ -8,21 +8,24 @@ git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 echo "** Attempting to log..."
 echo -e "$(date +'%F %R')\t$me\tJust checkin in!" >> log
 
-# SYSTEM STUFF
+# USER SETUP
+
+echo "Copying ssh key to '/etc/skel/'..."
+cp -r /home/ubuntu/.ssh /etc/skel
 
 echo "** Input new user..."
 read new_user
 
-echo "** Creating new user '$newuser'..."
+echo "** Creating new user '$new_user'..."
 adduser $new_user
 
 echo "** Creating new group 'web'..."
 addgroup web
 
-echo "** Adding user '$newuser' to group 'web'..."
+echo "** Adding user '$new_user' to group 'web'..."
 adduser $new_user web
 
-echo "** Adding user '$newuser' to sudoers...'
+echo "** Adding user '$new_user' to sudoers...'
 echo "$new_user ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/$new_user
 chmod -v 440 /etc/sudoers.d/$new_user
 
@@ -30,6 +33,13 @@ echo "** Changing host name to '$1'..."
 hostname $1
 echo $1 | tee /etc/hostname
 echo -e "127.0.1.1\t$1" | tee -a /etc/hosts
+
+# User preferences
+echo "export EDITOR=/usr/bin/vi" | tee -a /home/$new_user/.profile
+echo "export VISUAL=/usr/bin/vi" | tee -a /home/$new_user/.profile
+
+
+# HOUSE CLEANING
 
 echo "** Attempting to update system..."
 apt-get update && apt-get upgrade -y
@@ -61,9 +71,6 @@ chown -Rv :web /usr/share/nginx/www
 echo "** Making link to document root..."
 ln -sv /usr/share/nginx/www /var/www
 
-# User preferences
-echo "export EDITOR=/usr/bin/vi" | tee -a /home/$new_user/.profile
-echo "export VISUAL=/usr/bin/vi" | tee -a /home/$new_user/.profile
 echo "** Hurray!"
 
 exit 0
