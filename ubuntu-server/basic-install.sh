@@ -25,7 +25,7 @@ addgroup web
 echo "** Adding user '$new_user' to group 'web'..."
 adduser $new_user web
 
-echo "** Adding user '$new_user' to sudoers...'
+echo "** Adding user '$new_user' to sudoers..."
 echo "$new_user ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/$new_user
 chmod -v 440 /etc/sudoers.d/$new_user
 
