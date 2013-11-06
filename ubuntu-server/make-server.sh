@@ -1,27 +1,30 @@
 #!/bin/bash
 
-#. /path/to/functions
-
-# $1 is host name
+# $1 is intended host name
 # $2 is elastic ip address
 # $3 is name of key pair
 
 # Time to wait for instance to initiate
 instance_wait="90s"
+
 # Path to key file
 key_path=$(echo ~)/.ssh/$3.pem
+
 # http://stackoverflow.com/a/192337/1351736
 me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
+
 #
 git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 
 # Outputting variables
 cat <<EOM
-** Instance name: $1
+** Intended host name: $1
 ** Elastic IP address: $2
 ** Name of key pair: $3
 ** Path to key: $key_path
 EOM
+
+# aws
 
 echo "** Attempting to run instance..."
 last_instance_id=$(\
@@ -48,14 +51,18 @@ ssh-keygen -f ~/.ssh/known_hosts -R $2
 echo "** Sleeping $instance_wait while instance initiates..."
 sleep $instance_wait
 
+# wget / chmod / execute
+
 echo "** Attempting to download script..."
 wget -N $git_url/retry-ssh.sh -P ~/bin
 
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/retry-ssh.sh
 
-echo "** Attempting to execute script over SSH..."
-bash ~/bin/retry-ssh.sh "-i $key_path ubuntu@$2"
+echo "** Attempting to execute script..."
+~/bin/retry-ssh.sh "-i $key_path ubuntu@$2"
+
+# wget / chmod / execute
 
 echo "** Attempting to download script..."
 wget -N $git_url/run-setup.sh -P ~/bin
@@ -63,8 +70,10 @@ wget -N $git_url/run-setup.sh -P ~/bin
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/run-setup.sh
 
-echo "** Attempting to execute script over SSH..."
-ssh -i $key_path "ubuntu@$2" "sudo bash -s" < ~/bin/run-setup.sh
+#echo "** Attempting to execute script over SSH..."
+#ssh -i $key_path "ubuntu@$2" "sudo bash -s" < $(~/bin/run-setup.sh $1)
+
+# ssh
 
 echo "** Attempting to SSH into the server..."
 ssh -i $key_path "ubuntu@$2"
