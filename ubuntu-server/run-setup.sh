@@ -11,10 +11,11 @@ wget -N $git_url/basic-install.sh -P ~/bin
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/basic-install.sh
 
-echo "** Attempting to execute script..."
-bash ~/bin/basic-install.sh
+#echo "** Attempting to execute script..."
+#bash ~/bin/basic-install.sh
 
 echo "** Attempting to log..."
 echo -e "$(date +'%F %R')\t$me\tJust checkin in!" >> log
 
+echo "** Now try running basic-install.sh."
 exit 0

@@ -7,7 +7,7 @@
 # $3 is name of key pair
 
 # Time to wait for instance to initiate
-instance_wait="120s"
+instance_wait="90s"
 # Path to key file
 key_path=$(echo ~)/.ssh/$3.pem
 # http://stackoverflow.com/a/192337/1351736
