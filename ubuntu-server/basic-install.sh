@@ -3,6 +3,14 @@
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 
+# HOUSE CLEANING
+
+echo "** Attempting to update system..."
+sudo apt-get update && apt-get upgrade -y
+
+echo "** Attempting to install packages..."
+sudo apt-get install vim git nginx -y
+
 # USER SETUP
 
 echo "Copying ssh key to '/etc/skel/'..."
@@ -24,27 +32,21 @@ echo "** Adding user '$new_user' to sudoers..."
 echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$new_user
 chmod -v 440 /etc/sudoers.d/$new_user
 
+echo "Input host name..."
+read host_name
+
 echo "** Changing host name to '$1'..."
-sudo hostname $1
-echo $1 | sudo tee /etc/hostname
-echo -e "127.0.1.1\t$1" | sudo tee -a /etc/hosts
-
-# User preferences
-echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
-echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
-
-# HOUSE CLEANING
-
-echo "** Attempting to update system..."
-sudo apt-get update && apt-get upgrade -y
-
-echo "** Attempting to install packages..."
-sudo apt-get install vim git nginx -y
+sudo hostname $host_name
+echo $host_name | sudo tee /etc/hostname
+echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
 wget -N $git_url/.vimrc
+
+echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
+echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 # WEB SERVER STUFF
 
