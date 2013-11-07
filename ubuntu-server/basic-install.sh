@@ -56,7 +56,7 @@ sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
 sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
 
 echo "** Setting permissions on script..."
-sudo chmod -v +x usr/local/bin/fargen-site
+sudo chmod -v +x /usr/local/bin/fargen-site
 
 echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
