@@ -63,19 +63,18 @@ chmod -v +x ~/bin/retry-ssh.sh
 echo "** Attempting to execute script..."
 ~/bin/retry-ssh.sh "-i $key_path ubuntu@$2"
 
-# wget / chmod / execute
+# wget / chmod
 
 echo "** Attempting to download script..."
-wget -N $git_url/run-setup.sh -P ~/bin
+wget -N $git_url/basic-install.sh -P ~/bin
 
 echo "** Setting script permissions..."
-chmod -v +x ~/bin/run-setup.sh
+chmod -v +x ~/bin/basic-install.sh
 
-# ssh
+#ssh
 
 echo "** Attemping to SCP script to server..."
-scp -v -i $key_path ~/bin/run-setup.sh ubuntu@$2:~/bin
-#scp -i ~/.ssh/key-2013-10-25.pem ~/bin/run-setup.sh ubuntu@54.214.41.91:~/bin
+scp -v -i $key_path ~/bin/basic-install.sh ubuntu@$2:~/basic-install
 
 echo "** Attempting to SSH into server..."
 ssh -i $key_path ubuntu@$2
