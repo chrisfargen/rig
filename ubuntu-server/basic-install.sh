@@ -9,7 +9,7 @@ git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
-sudo apt-get update && apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 echo "** Attempting to install packages..."
 sudo apt-get install vim git nginx -y
