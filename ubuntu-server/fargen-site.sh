@@ -19,7 +19,7 @@ then
 
         echo "** Adding some test text..."
         #sed "s/nginx/$2/g" /usr/share/nginx/www/index.html | sudo tee /usr/share/nginx/www/$2/index.html
-	sed -i "s/nginx/$2/g" /usr/share/nginx/www/$2/htdocs/index.html
+	sudo sed -i "s/nginx/$2/g" /usr/share/nginx/www/$2/htdocs/index.html
 
         echo "** Would you like to enable this site? (y/n)"
         read fargen_enable

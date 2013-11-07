@@ -1,6 +1,6 @@
 server {
         include /etc/nginx/fargen-vhost.conf;
         
-        root /usr/share/nginx/www/basic-vhost;
+        root /usr/share/nginx/www/basic-vhost/htdocs;
         server_name basic-vhost.hostname.example2.com;
 }
