@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Hostname
+host_name="hostname.example"
+
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 
@@ -32,9 +35,6 @@ echo "** Adding user '$new_user' to sudoers..."
 echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$new_user
 sudo chmod -v 440 /etc/sudoers.d/$new_user
 
-echo "Input host name..."
-read host_name
-
 echo "** Changing host name to '$host_name'..."
 sudo hostname $host_name
 echo $host_name | sudo tee /etc/hostname
@@ -56,7 +56,7 @@ sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
 sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
 
 echo "** Creating nginx site config..."
-sed "s/hostname/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
+sed "s/hostname.example/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
 
 echo "** Setting permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site

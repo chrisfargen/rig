@@ -74,7 +74,10 @@ wget -N $git_url/basic-install.sh -P ~/bin
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/basic-install.sh
 
-#ssh
+echo "** Setting hostname in script..."
+sed -i "s/hostname.example/$1/g" ~/bin/basic-install.sh
+
+# ssh
 
 echo "** Attemping to SCP script to server..."
 scp -i $key_path ~/bin/basic-install.sh ubuntu@$2:~/basic-install
