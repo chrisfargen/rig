@@ -52,8 +52,8 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 echo "** Attempting to download fargen site manager..."
 sudo wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
-sudo wget -N $git_url/fargen-vhost.conf -P /etc/nginx
-sudo wget -N $git_url/basic-vhost -P /etc/nginx/sites-available
+sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
+sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
 
 echo "** Setting permissions on script..."
 sudo chmod -v +x usr/local/bin/fargen-site
