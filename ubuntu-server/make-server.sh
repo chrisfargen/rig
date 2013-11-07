@@ -75,7 +75,7 @@ echo "** Setting script permissions..."
 chmod -v +x ~/bin/basic-install.sh
 
 echo "** Setting hostname in script..."
-sed -i "s/hostname.example/$1/g" ~/bin/basic-install.sh
+sed -i "s/hostname.example1.com/$1/g" ~/bin/basic-install.sh
 
 # ssh
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Hostname
-host_name="hostname.example"
+host_name="hostname.example1.com"
 
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
@@ -56,7 +56,7 @@ sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
 sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
 
 echo "** Creating nginx site config..."
-sed "s/hostname.example/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
+sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
 
 echo "** Setting permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site
