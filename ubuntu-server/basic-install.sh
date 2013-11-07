@@ -59,7 +59,7 @@ echo "** Setting permissions on script..."
 sudo chmod -v +x usr/local/bin/fargen-site
 
 echo "** Disable default enabled site..."
-sudo rm /etc/nginx/sites-enabled/*
+sudo rm -v /etc/nginx/sites-enabled/*
 
 echo "** Changing ownership on document root..."
 sudo chown -Rv :web /usr/share/nginx/www

@@ -77,7 +77,7 @@ chmod -v +x ~/bin/basic-install.sh
 #ssh
 
 echo "** Attemping to SCP script to server..."
-scp -v -i $key_path ~/bin/basic-install.sh ubuntu@$2:~/basic-install
+scp -i $key_path ~/bin/basic-install.sh ubuntu@$2:~/basic-install
 
 echo "** Attempting to SSH into server..."
 ssh -i $key_path ubuntu@$2
