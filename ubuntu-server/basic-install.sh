@@ -6,40 +6,40 @@ git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
 # USER SETUP
 
 echo "Copying ssh key to '/etc/skel/'..."
-cp -r /home/ubuntu/.ssh /etc/skel
+sudo cp -r /home/ubuntu/.ssh /etc/skel
 
 echo "** Input new user..."
 read new_user
 
 echo "** Creating new user '$new_user'..."
-adduser $new_user
+sudo adduser $new_user
 
 echo "** Creating new group 'web'..."
-addgroup web
+sudo addgroup web
 
 echo "** Adding user '$new_user' to group 'web'..."
-adduser $new_user web
+sudo adduser $new_user web
 
 echo "** Adding user '$new_user' to sudoers..."
-echo "$new_user ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/$new_user
+echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$new_user
 chmod -v 440 /etc/sudoers.d/$new_user
 
 echo "** Changing host name to '$1'..."
-hostname $1
-echo $1 | tee /etc/hostname
-echo -e "127.0.1.1\t$1" | tee -a /etc/hosts
+sudo hostname $1
+echo $1 | sudo tee /etc/hostname
+echo -e "127.0.1.1\t$1" | sudo tee -a /etc/hosts
 
 # User preferences
-echo "export EDITOR=/usr/bin/vi" | tee -a /home/$new_user/.profile
-echo "export VISUAL=/usr/bin/vi" | tee -a /home/$new_user/.profile
+echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
+echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
-apt-get update && apt-get upgrade -y
+sudo apt-get update && apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-apt-get install vim git nginx -y
+sudo apt-get install vim git nginx -y
 
 # VIM STUFF
 
@@ -49,21 +49,21 @@ wget -N $git_url/.vimrc
 # WEB SERVER STUFF
 
 echo "** Attempting to download fargen site manager..."
-wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
-wget -N $git_url/fargen-vhost.conf -P /etc/nginx
-wget -N $git_url/basic-vhost -P /etc/nginx/sites-available
+sudo wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
+sudo wget -N $git_url/fargen-vhost.conf -P /etc/nginx
+sudo wget -N $git_url/basic-vhost -P /etc/nginx/sites-available
 
 echo "** Setting permissions on script..."
-chmod -v +x usr/local/bin/fargen-site
+sudo chmod -v +x usr/local/bin/fargen-site
 
 echo "** Disable default enabled site..."
-rm /etc/nginx/sites-enabled/*
+sudo rm /etc/nginx/sites-enabled/*
 
 echo "** Changing ownership on document root..."
-chown -Rv :web /usr/share/nginx/www
+sudo chown -Rv :web /usr/share/nginx/www
 
 echo "** Making link to document root..."
-ln -sv /usr/share/nginx/www /var/www
+sudo ln -sv /usr/share/nginx/www /var/www
 
 echo "** Hurray!"
 
