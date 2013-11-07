@@ -1,12 +1,7 @@
 #!/bin/bash
 
-# http://stackoverflow.com/a/192337/1351736
-me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
-
-echo "** Attempting to log..."
-echo -e "$(date +'%F %R')\t$me\tJust checkin in!" >> log
 
 # USER SETUP
 
@@ -38,14 +33,13 @@ echo -e "127.0.1.1\t$1" | tee -a /etc/hosts
 echo "export EDITOR=/usr/bin/vi" | tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | tee -a /home/$new_user/.profile
 
-
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
 apt-get update && apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-apt-get install vim git nginx mysql-server -y
+apt-get install vim git nginx -y
 
 # VIM STUFF
 

@@ -34,6 +34,7 @@ last_instance_id=$(\
     --instance-type "t1.micro" \
     --query "Instances[0].InstanceId" \
     | sed -e 's/^"//'  -e 's/"$//')
+
 echo "** Instance id: $last_instance_id"
 
 echo "** Attempting to associate address $2..."
@@ -69,9 +70,6 @@ wget -N $git_url/run-setup.sh -P ~/bin
 
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/run-setup.sh
-
-#echo "** Attempting to execute script over SSH..."
-#ssh -i $key_path "ubuntu@$2" "sudo bash -s" < $(~/bin/run-setup.sh $1)
 
 # ssh
 

@@ -17,8 +17,8 @@ wget -N $git_url/basic-install.sh -P ~/bin
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/basic-install.sh
 
-echo "** Attempting to execute script..."
-~/bin/basic-install.sh $1
+#echo "** Attempting to execute script..."
+#~/bin/basic-install.sh $1
 
 #echo "** Now try running: sudo bash ~/bin/basic-install.sh [hostname]"
 
