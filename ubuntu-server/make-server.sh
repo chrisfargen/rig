@@ -49,6 +49,9 @@ aws ec2 create-tags --resources $last_instance_id --tags Key=Name,Value=$1 --out
 echo "** Clearing host fingerprint for address $2..."
 ssh-keygen -f ~/.ssh/known_hosts -R $2
 
+echo "** Clearing host fingerprint for address $1..."
+ssh-keygen -f ~/.ssh/known_hosts -R $1
+
 echo "** Sleeping $instance_wait while instance initiates..."
 sleep $instance_wait
 
