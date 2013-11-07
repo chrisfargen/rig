@@ -67,6 +67,9 @@ sudo rm -v /etc/nginx/sites-enabled/*
 echo "** Changing ownership on document root..."
 sudo chown -Rv :web /usr/share/nginx/www
 
+echo "** Adding sticky bit to document root..."
+sudo chmod g+rwxs /usr/share/nginx/www
+
 echo "** Making link to document root..."
 sudo ln -sv /usr/share/nginx/www /var/www
 
