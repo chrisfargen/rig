@@ -73,7 +73,11 @@ chmod -v +x ~/bin/run-setup.sh
 
 # ssh
 
-echo "** Attempting to SSH into the server..."
-ssh -i $key_path "ubuntu@$2"
+echo "** Attemping to SCP script to server..."
+scp -v -i ~/.ssh/$key_path ~/bin/run-setup.sh ubuntu@$2:~/bin
+#scp -i ~/.ssh/key-2013-10-25.pem ~/bin/run-setup.sh ubuntu@54.214.41.91:~/bin
+
+echo "** Attempting to SSH into server..."
+ssh -i $key_path ubuntu@$2
 
 exit 0
