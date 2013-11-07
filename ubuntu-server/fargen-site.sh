@@ -12,11 +12,15 @@ then
     then
         echo "** Creating nginx site config..."
         sed "s/basic-vhost/$2/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/$2
+
         echo "** Creating folder for document root..."
-        sudo mkdir -pv /usr/share/nginx/www/$2
+        #sudo mkdir -pv /usr/share/nginx/www/$2
+	sudo cp -r /usr/share/nginx/www/basic-vhost /usr/share/nginx/www/$2
+
         echo "** Adding some test text..."
-        sed "s/nginx/$2/g" /usr/share/nginx/www/index.html | sudo tee /usr/share/nginx/www/$2/index.html
-        # Ask if user wants to enable site
+        #sed "s/nginx/$2/g" /usr/share/nginx/www/index.html | sudo tee /usr/share/nginx/www/$2/index.html
+	sed -i "s/nginx/$2/g" /usr/share/nginx/www/$2/index.html
+
         echo "** Would you like to enable this site? (y/n)"
         read fargen_enable
         if [ $fargen_enable = "y" ]

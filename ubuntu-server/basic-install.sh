@@ -54,6 +54,7 @@ echo "** Attempting to download fargen site manager..."
 sudo wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
 sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
 sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
+sudo wget -N $git_url/lib/robots.txt -P /usr/share/nginx/www
 
 echo "** Creating nginx site config..."
 sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
@@ -64,14 +65,19 @@ sudo chmod -v +x /usr/local/bin/fargen-site
 echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
 
+echo "** Making link to document root..."
+sudo ln -sv /usr/share/nginx/www /var/www
+
+echo "** Organize vhost skel..."
+sudo mkdir -pv /usr/share/nginx/www/basic-vhost/htdocs
+sudo cp /usr/share/nginx/www/index.html /usr/share/nginx/www/basic-vhost/htdocs
+sudo cp /usr/share/nginx/www/robots.txt /usr/share/nginx/www/basic-vhost/htdocs
+
 echo "** Changing ownership on document root..."
 sudo chown -Rv :web /usr/share/nginx/www
 
 echo "** Adding sticky bit to document root..."
 sudo chmod g+rwxs /usr/share/nginx/www
-
-echo "** Making link to document root..."
-sudo ln -sv /usr/share/nginx/www /var/www
 
 echo "** Hurray!"
 
