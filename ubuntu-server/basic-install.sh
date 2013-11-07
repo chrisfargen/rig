@@ -30,7 +30,7 @@ sudo adduser $new_user web
 
 echo "** Adding user '$new_user' to sudoers..."
 echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$new_user
-chmod -v 440 /etc/sudoers.d/$new_user
+sudo chmod -v 440 /etc/sudoers.d/$new_user
 
 echo "Input host name..."
 read host_name
