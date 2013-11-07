@@ -23,7 +23,7 @@ echo "** Input new user..."
 read new_user
 
 echo "** Creating new user '$new_user'..."
-sudo adduser $new_user
+sudo adduser $new_user --gecos ""
 
 echo "** Creating new group 'web'..."
 sudo addgroup web
