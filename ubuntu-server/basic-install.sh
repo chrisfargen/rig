@@ -66,7 +66,7 @@ echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
 
 echo "** Making link to document root..."
-sudo ln -sv /usr/share/nginx/www /var/www
+sudo ln -svT /usr/share/nginx/www /var/www
 
 echo "** Organize vhost skel..."
 sudo mkdir -pv /usr/share/nginx/www/basic-vhost/htdocs
