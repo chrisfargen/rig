@@ -55,6 +55,9 @@ sudo wget $git_url/lib/fargen-site.sh -O /usr/local/bin/fargen-site
 sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
 sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
 
+echo "** Creating nginx site config..."
+sed "s/hostname/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/$2
+
 echo "** Setting permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site
 

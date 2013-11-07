@@ -2,5 +2,5 @@ server {
         include /etc/nginx/fargen-vhost.conf;
         
         root /usr/share/nginx/www/basic-vhost;
-        server_name basic-vhost.example.com;
+        server_name basic-vhost.hostname;
 }
