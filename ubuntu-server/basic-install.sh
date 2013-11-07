@@ -35,7 +35,7 @@ sudo chmod -v 440 /etc/sudoers.d/$new_user
 echo "Input host name..."
 read host_name
 
-echo "** Changing host name to '$1'..."
+echo "** Changing host name to '$host_name'..."
 sudo hostname $host_name
 echo $host_name | sudo tee /etc/hostname
 echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
