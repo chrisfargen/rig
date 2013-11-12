@@ -4,7 +4,7 @@
 host_name="hostname.example1.com"
 
 # Shortcut to path
-git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
+git_url="https://raw.github.com/chrisfargen/rig/master"
 
 # HOUSE CLEANING
 
@@ -43,7 +43,7 @@ echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
-wget -N $git_url/.vimrc
+wget -N $git_url/ubuntu-server/lib/.vimrc
 
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
@@ -51,10 +51,10 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 # WEB SERVER STUFF
 
 echo "** Attempting to download fargen site manager..."
-sudo wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
-sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
-sudo wget -N $git_url/lib/basic-vhost -P /etc/nginx/sites-available
-sudo wget -N $git_url/lib/robots.txt -P /usr/share/nginx/www
+sudo wget $git_url/ubuntu-server/fargen-site.sh -O /usr/local/bin/fargen-site
+sudo wget -N $git_url/ubuntu-server/lib/fargen-vhost.conf -P /etc/nginx
+sudo wget -N $git_url/ubuntu-server/lib/basic-vhost -P /etc/nginx/sites-available
+sudo wget -N $git_url/ubuntu-server/lib/robots.txt -P /usr/share/nginx/www
 
 echo "** Creating nginx site config..."
 sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost

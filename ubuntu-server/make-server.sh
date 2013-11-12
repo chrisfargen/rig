@@ -14,7 +14,7 @@ key_path=$(echo ~)/.ssh/$3.pem
 me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 
 #
-git_url="https://raw.github.com/chrisfargen/rig/master/ubuntu-server"
+git_url="https://raw.github.com/chrisfargen/rig/master"
 
 # Outputting variables
 cat <<EOM
@@ -58,7 +58,7 @@ sleep $instance_wait
 # wget / chmod / execute
 
 echo "** Attempting to download script..."
-wget -N $git_url/retry-ssh.sh -P ~/bin
+wget -N $git_url/ubuntu-server/retry-ssh.sh -P ~/bin
 
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/retry-ssh.sh
@@ -69,7 +69,7 @@ echo "** Attempting to execute script..."
 # wget / chmod
 
 echo "** Attempting to download script..."
-wget -N $git_url/basic-install.sh -P ~/bin
+wget -N $git_url/ubuntu-server/basic-install.sh -P ~/bin
 
 echo "** Setting script permissions..."
 chmod -v +x ~/bin/basic-install.sh
