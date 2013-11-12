@@ -24,6 +24,7 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$USER/.profile
 # GIT STUFF
 
 echo "** Enabling password caching..."
+# https://help.github.com/articles/set-up-git
 git config --global credential.helper 'cache --timeout=3600'
 
 # echo "** Attempting to download fargen site manager..."
