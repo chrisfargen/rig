@@ -16,7 +16,7 @@ sudo apt-get install vim git -y
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
-wget -N $git_url/lib/.vimrc
+wget -N $git_url/lib/.vimrc -P ~
 
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$USER/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$USER/.profile

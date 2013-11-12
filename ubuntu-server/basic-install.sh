@@ -43,7 +43,7 @@ echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
-wget -N $git_url/ubuntu-server/lib/.vimrc
+wget -N $git_url/ubuntu-server/lib/.vimrc -P /home/$new_user
 
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
