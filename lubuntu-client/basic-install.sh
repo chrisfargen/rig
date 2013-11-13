@@ -36,8 +36,20 @@ git config --global credential.helper 'cache --timeout=3600'
 # sudo wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
 # sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
 
+# DROPBOX STUFF
+# https://www.dropbox.com/install?os=lnx
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+~/.dropbox-dist/dropboxd
+
+sudo wget https://www.dropbox.com/download?dl=packages/dropbox.py -O /usr/local/bin/dropbox.py
+
+sudo chmod +x /usr/local/bin/dropbox.py
+
 # OPENBOX STUFF
 
+# Add to an openbox config file...
+# ~/.dropbox-dist/dropboxd &
 # ...
 
 # CHROMIUM PROCEDURE
@@ -45,7 +57,7 @@ git config --global credential.helper 'cache --timeout=3600'
 # 1.  Install chromium-browser.
 # 2.  Install lastpass extension.
 # 3.  From chromium, sign in to lastpass.
-# 4.  
+# 4.  Sign in to chrome.
 
 # ...
 
