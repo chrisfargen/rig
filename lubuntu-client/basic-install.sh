@@ -3,13 +3,18 @@
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master"
 
+# ADD REPOS
+
+echo "** Addding repos..."
+sudo add-apt-repository ppa:audacity-team/daily
+
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim git -y
+sudo apt-get install vim git audacity -y
 
 # USER SETUP
 
@@ -30,6 +35,19 @@ git config --global credential.helper 'cache --timeout=3600'
 # echo "** Attempting to download fargen site manager..."
 # sudo wget $git_url/fargen-site.sh -O /usr/local/bin/fargen-site
 # sudo wget -N $git_url/lib/fargen-vhost.conf -P /etc/nginx
+
+# OPENBOX STUFF
+
+# ...
+
+# CHROMIUM PROCEDURE
+
+# 1.  Install chromium-browser.
+# 2.  Install lastpass extension.
+# 3.  From chromium, sign in to lastpass.
+# 4.  
+
+# ...
 
 # PROJECT DIRECTORY STUFF
 
