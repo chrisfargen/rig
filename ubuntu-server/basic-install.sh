@@ -76,6 +76,11 @@ sudo cp /usr/share/nginx/www/robots.txt /usr/share/nginx/www/basic-vhost/htdocs
 echo "** Changing ownership on document root..."
 sudo chown -Rv :web /usr/share/nginx/www
 
+# Set up backup scripts
+# cron:
+# 0 8 * * * bash /usr/bin/backup-files
+# 0 8 * * * bash /usr/bin/backup-sql
+
 echo "** Adding sticky bit to document root..."
 sudo chmod g+rwxs /usr/share/nginx/www
 

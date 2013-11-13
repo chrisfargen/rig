@@ -61,6 +61,13 @@ sudo chmod +x /usr/local/bin/dropbox.py
 
 # ...
 
+# SSH STUFF
+mkdir ~/.ssh
+# Make links to Dropbox keys
+cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
+
+
+
 # PROJECT DIRECTORY STUFF
 
 echo "** Creating document root..."
