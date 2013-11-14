@@ -51,6 +51,16 @@ sudo chmod +x /usr/local/bin/dropbox.py
 # Add to an openbox config file...
 # ~/.dropbox-dist/dropboxd &
 # ...
+# 
+# Also...
+#
+# - Disable scrolling to switch desktops
+# - Add clock
+# - Add network manager
+# - Change desktop
+# - Enable quick-start for chromium, terminator
+
+wget -N $git_url/lubuntu-client/lib/rc.xml
 
 # CHROMIUM PROCEDURE
 

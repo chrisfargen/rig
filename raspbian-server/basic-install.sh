@@ -40,8 +40,25 @@ cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
 
 # ...
 
+# GIT STUFF
+
+# Set up private repo
+
+# ...
+
+# RTORRENT STUFF 
+
+# ...
+
 # GOOGLE STUFF
 # https://code.google.com/p/googlecl/wiki/Install
+
+# ...
+
+# ELINKS STUFF
+
+# ...
+
 echo "** Hurray!"
 
 exit 0
