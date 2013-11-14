@@ -38,6 +38,10 @@ cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
 
 # AWS STUFF
 
+# ...
+
+# GOOGLE STUFF
+# https://code.google.com/p/googlecl/wiki/Install
 echo "** Hurray!"
 
 exit 0
