@@ -17,7 +17,7 @@ sudo apt-get install vim git nginx -y
 # USER SETUP
 
 echo "Copying ssh key to '/etc/skel/'..."
-sudo cp -r /home/ubuntu/.ssh /etc/skel
+sudo cp -r $HOME/.ssh /etc/skel
 
 echo "** Input new user..."
 read new_user
