@@ -17,6 +17,7 @@ This is the machine I use most frequently. The hardware specs are limited, but t
 - chromium
 - audacity
 - openbox
+- terminator
 
 So there those are.
 

@@ -7,8 +7,9 @@ The purpose of this machine is to harvest backups from 24x7 machines and accept 
 - vim
 - git
 - rdiff-backup
-- openssh-server
 - aws-cli
+- rtorrent
+- openssh-server
 - nfs-kernel-server
 
 ## Local Scripts
