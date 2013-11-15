@@ -14,7 +14,7 @@ echo "** Attempting to update system..."
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim git audacity -y
+sudo apt-get install vim git audacity sqlite3 sox -y
 
 # USER SETUP
 
