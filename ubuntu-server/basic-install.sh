@@ -91,6 +91,14 @@ sudo find $dr \
 
 cd $dr && /usr/local/bin/unlock $dr
 
+echo "** Random stuff..."
+
+(for i in $(seq 1 12);
+do
+    echo "$(openssl rand -base64 12)"
+done;
+read -p "** Press any key to continue...")
+
 echo "** MySQL install continuing..."
 sudo mysql_install_db
 
