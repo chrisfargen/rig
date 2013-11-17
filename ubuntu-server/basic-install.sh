@@ -81,8 +81,10 @@ echo "** Changing ownership on document root..."
 sudo chown -Rv :web $dr
 
 echo "** Changing permissions on document root..."
-find $dr -type f -exec chmod 664 {} \;
-find $dr -type d -exec chmod 775 {} \;
+# find $dr -type f -exec chmod ug=rw,o=r {} \;
+# find $dr -type d -exec chmod ug=rws,o=rx {} \;
+find $dr \( -type f -exec chmod ug=rw,o=r {} \; \) , \( -type d -exec chmod ug=rwxs,o=rx '{}' \; \)
+
 
 echo "** Hurray!"
 
