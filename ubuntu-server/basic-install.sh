@@ -94,6 +94,7 @@ sudo mysql_install_db
 
 sudo mysql_secure_installation
 
+sudo service php5-fpm reload
 
 echo "** Hurray!"
 
