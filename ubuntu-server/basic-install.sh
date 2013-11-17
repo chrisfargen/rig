@@ -2,7 +2,7 @@
 
 # Hostname
 host_name="hostname.example1.com"
-$dr="/var/www"
+dr="/var/www"
 
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master"
