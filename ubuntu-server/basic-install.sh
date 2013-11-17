@@ -123,7 +123,7 @@ if [ "$enable_test_site" = "y" ]
 then
     sudo service nginx start
     /usr/local/bin/fargen-site add bourbon
-    echo "<?php phpinfo ?>" | tee /var/www/bourbon/htdocs/index.php
+    echo "<?php phpinfo() ?>" | tee /var/www/bourbon/htdocs/index.php
 
 else
     echo "** Service nginx not enabled."
