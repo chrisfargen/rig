@@ -20,7 +20,7 @@ then
 
         echo "** Creating folder for document root..."
         #sudo mkdir -pv /usr/share/nginx/www/$2
-	sudo cp -rT /usr/share/nginx/www/basic-vhost /usr/share/nginx/www/$2
+	sudo cp -rpT /usr/share/nginx/www/basic-vhost /usr/share/nginx/www/$2
 
         echo "** Adding some test text..."
         #sed "s/nginx/$2/g" /usr/share/nginx/www/index.html | sudo tee /usr/share/nginx/www/$2/index.html
