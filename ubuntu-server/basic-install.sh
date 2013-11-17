@@ -83,7 +83,7 @@ sudo chown -Rv :web $dr
 echo "** Changing permissions on document root..."
 # find $dr -type f -exec chmod ug=rw,o=r {} \;
 # find $dr -type d -exec chmod ug=rws,o=rx {} \;
-find $dr \( -type f -exec chmod ug=rw,o=r {} \; \) , \( -type d -exec chmod ug=rwxs,o=rx '{}' \; \)
+find $dr \( -type f -exec chmod ug=rw,o=r {} \; \) , \( -type d -exec chmod u=rwx,g=rwxs,o=rx '{}' \; \)
 
 
 echo "** Hurray!"
