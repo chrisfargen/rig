@@ -2,6 +2,7 @@
 
 # Hostname
 host_name="hostname.example1.com"
+$dr="/var/www"
 
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master"
@@ -69,23 +70,19 @@ echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
 
 echo "** Making link to document root..."
-sudo ln -svT /usr/share/nginx/www /var/www
+sudo ln -svT /usr/share/nginx/www $dr
 
 echo "** Organize vhost skel..."
-sudo mkdir -pv /usr/share/nginx/www/basic-vhost/htdocs
-sudo cp /usr/share/nginx/www/index.html /usr/share/nginx/www/basic-vhost/htdocs
-sudo cp /usr/share/nginx/www/robots.txt /usr/share/nginx/www/basic-vhost/htdocs
+sudo mkdir -pv $dr/basic-vhost/htdocs
+sudo cp $dr/index.html $dr/basic-vhost/htdocs
+sudo cp $dr/robots.txt $dr/basic-vhost/htdocs
 
 echo "** Changing ownership on document root..."
-sudo chown -Rv :web /usr/share/nginx/www
+sudo chown -Rv :web $dr
 
-# Set up backup scripts
-# cron:
-# 0 8 * * * bash /usr/local/bin/backup-files
-# 0 8 * * * bash /usr/local/bin/backup-sql
-
-echo "** Adding sticky bit to document root..."
-sudo chmod g+rwxs /usr/share/nginx/www
+echo "** Changing permissions on document root..."
+find $dr -type f -exec chmod 664 {} \;
+find $dr -type d -exec chmod 775 {} \;
 
 echo "** Hurray!"
 
