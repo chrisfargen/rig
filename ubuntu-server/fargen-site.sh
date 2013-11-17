@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# https://github.com/WordPress/WordPress/archive/master.zip
+# https://github.com/h5bp/html5-boilerplate/archive/master.zip
+#
+
 echo "** Fargen Site (nginx site manager) initiated!"
 
 if [ "$1" = "add" ]
