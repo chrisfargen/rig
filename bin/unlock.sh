@@ -3,8 +3,8 @@
 echo "** Setting file and directory permissions..."
 
 sudo find . \
-\( -type f -exec chmod 0664 {} \; \) , \
-\( -type d -exec chmod 2775 {} \; \)
+\( -type f -exec chmod ug+rw,o+r {} \; \) , \
+\( -type d -exec chmod u+rwx,g+rwxs,o+rx {} \; \)
 
 echo "** Done!"
 
