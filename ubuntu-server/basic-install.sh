@@ -65,7 +65,7 @@ echo "** Editing nginx site config..."
 sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
 
 echo "** Setting permissions on script..."
-sudo chmod -v +x /usr/local/bin/fargen-site
+sudo chmod -v +x /usr/local/bin/fargen-site /usr/local/bin/unlock
 
 echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
@@ -79,7 +79,7 @@ sudo cp $dr/index.html $dr/basic-vhost/htdocs
 sudo cp $dr/robots.txt $dr/basic-vhost/htdocs
 
 echo "** Changing ownership on document root..."
-sudo chown -Rv :web $dr
+sudo chown -Rv :web $dr/
 
 echo "** Changing permissions on document root..."
 # find $dr -type f -exec chmod ug=rw,o=r {} \;
@@ -87,6 +87,12 @@ echo "** Changing permissions on document root..."
 find $dr \
 \( -type f -exec chmod 0664 {} \; \) , \
 \( -type d -exec chmod 2775 {} \; \)
+
+echo "** MySQL install continuing..."
+sudo mysql_install_db
+
+sudo mysql_secure_installation
+
 
 echo "** Hurray!"
 
