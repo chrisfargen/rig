@@ -59,6 +59,9 @@ sudo wget -N $git_url/ubuntu-server/lib/robots.txt -P /usr/share/nginx/www
 echo "** Creating nginx site config..."
 sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
 
+echo "** Editing nginx site config..."
+sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
+
 echo "** Setting permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site
 
