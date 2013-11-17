@@ -53,6 +53,7 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 echo "** Attempting to download fargen site manager..."
 sudo wget $git_url/ubuntu-server/fargen-site.sh -O /usr/local/bin/fargen-site
+sudo wget $git_url/bin/unlock.sh -O /usr/local/bin/unlock
 sudo wget -N $git_url/ubuntu-server/lib/fargen-vhost.conf -P /etc/nginx
 sudo wget -N $git_url/ubuntu-server/lib/basic-vhost -P /etc/nginx/sites-available
 sudo wget -N $git_url/ubuntu-server/lib/robots.txt -P /usr/share/nginx/www
