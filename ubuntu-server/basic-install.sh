@@ -89,12 +89,37 @@ sudo find $dr \
 \( -type f -exec chmod 0664 {} \; \) , \
 \( -type d -exec chmod 2775 {} \; \)
 
+cd $dr && /usr/local/bin/unlock $dr
+
 echo "** MySQL install continuing..."
 sudo mysql_install_db
 
 sudo mysql_secure_installation
 
 sudo service php5-fpm reload
+
+echo "** Would you like to enable nginx? [Y/n]"
+read enable_nginx
+
+if [ "$enable_nginx" = "y" ]
+then
+    sudo service nginx start
+else
+    echo "** Service nginx not enabled."
+fi
+
+echo "** Would you like to put the finishing touches on it (testing)? [Y/n]"
+read enable_test_site
+
+if [ "$enable_test_site" = "y" ]
+then
+    sudo service nginx start
+    /usr/local/bin/fargen-site add bourbon
+    echo "<?php phpinfo ?>" | tee /var/www/bourbon/htdocs/index.php
+
+else
+    echo "** Service nginx not enabled."
+fi
 
 echo "** Hurray!"
 
