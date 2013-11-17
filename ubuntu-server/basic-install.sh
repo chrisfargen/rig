@@ -13,7 +13,7 @@ echo "** Attempting to update system..."
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim git nginx -y
+sudo apt-get install vim git nginx mysql-server php5-mysql -y
 
 # USER SETUP
 
@@ -83,8 +83,9 @@ sudo chown -Rv :web $dr
 echo "** Changing permissions on document root..."
 # find $dr -type f -exec chmod ug=rw,o=r {} \;
 # find $dr -type d -exec chmod ug=rws,o=rx {} \;
-find $dr \( -type f -exec chmod ug=rw,o=r {} \; \) , \( -type d -exec chmod u=rwx,g=rwxs,o=rx '{}' \; \)
-
+find $dr \
+\( -type f -exec chmod 0664 {} \; \) , \
+\( -type d -exec chmod 2775 {} \; \)
 
 echo "** Hurray!"
 
