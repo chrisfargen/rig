@@ -48,7 +48,7 @@ echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
-sudo ln -s $dr/rig/ubuntu-server/lib/.vimrc -t /home/$new_user
+sudo ln -s -T $dr/rig/ubuntu-server/lib/.vimrc /home/$new_user
 
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
@@ -56,8 +56,8 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 # WEB SERVER STUFF
 
 echo "** Attempting to download fargen site manager..."
-sudo ln -s $dr/rig/ubuntu-server/bin/fargen-site.sh -t /usr/local/bin/fargen-site
-sudo ln -s $dr/rig/ubuntu-server/bin/unlock.sh -t /usr/local/bin/unlock
+sudo ln -s -T $dr/rig/ubuntu-server/bin/fargen-site.sh /usr/local/bin/fargen-site
+sudo ln -s -T $dr/rig/ubuntu-server/bin/unlock.sh /usr/local/bin/unlock
 sudo ln -s $dr/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
 sudo ln -s $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available
 sudo ln -s $dr/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/
