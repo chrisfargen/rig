@@ -4,9 +4,6 @@
 host_name="hostname.example1.com"
 dr="/var/www"
 
-# Shortcut to path
-git_url="https://raw.github.com/chrisfargen/rig/master"
-
 # HOUSE CLEANING
 
 # Allow for unattended mysql installation
@@ -51,8 +48,7 @@ echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
-#wget -N $git_url/ubuntu-server/lib/.vimrc -P /home/$new_user
-sudo ln -s /var/www/rig/ubuntu-server/lib/.vimrc /home/$new_user
+sudo ln -s $dr/rig/ubuntu-server/lib/.vimrc -t /home/$new_user
 
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
@@ -60,16 +56,11 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 # WEB SERVER STUFF
 
 echo "** Attempting to download fargen site manager..."
-#sudo wget $git_url/ubuntu-server/fargen-site.sh -O /usr/local/bin/fargen-site
-sudo ln -sT /var/www/rig/ubuntu-server/bin/fargen-site.sh /usr/local/bin/fargen-site
-#sudo wget $git_url/bin/unlock.sh -O /usr/local/bin/unlock
-sudo ln -sT /var/www/rig/ubuntu-server/bin/unlock.sh /usr/local/bin/unlock
-#sudo wget -N $git_url/ubuntu-server/lib/fargen-vhost.conf -P /etc/nginx
-sudo ln -s /var/www/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
-#sudo wget -N $git_url/ubuntu-server/lib/basic-vhost -P /etc/nginx/sites-available
-sudo ln -s /var/www/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available
-#sudo wget -N $git_url/ubuntu-server/lib/robots.txt -P /usr/share/nginx/www
-sudo ln -s /var/www/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/
+sudo ln -s $dr/rig/ubuntu-server/bin/fargen-site.sh -t /usr/local/bin/fargen-site
+sudo ln -s $dr/rig/ubuntu-server/bin/unlock.sh -t /usr/local/bin/unlock
+sudo ln -s $dr/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
+sudo ln -s $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available
+sudo ln -s $dr/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/
 
 echo "** Creating nginx site config..."
 sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
@@ -88,7 +79,7 @@ echo "** Making link to document root..."
 sudo ln -svT /usr/share/nginx/www $dr
 
 echo "** Setting up 'rig' directory for latest scripts..."
-cd /var/www && sudo git clone https://github.com/chrisfargen/rig.git
+cd $dr && sudo git clone https://github.com/chrisfargen/rig.git
 
 echo "** Organize vhost skel..."
 sudo mkdir -pv $dr/basic-vhost/htdocs
@@ -138,7 +129,7 @@ read enable_test_site
 if [ "$enable_test_site" = "y" ]
 then
     sudo service nginx start
-    /usr/local/bin/fargen-site add bourbon
+    fargen-site add bourbon
     echo "<?php phpinfo() ?>" | sudo tee /var/www/bourbon/htdocs/index.php
 
 else
