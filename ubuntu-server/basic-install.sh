@@ -35,6 +35,7 @@ sudo addgroup web
 
 echo "** Adding user '$new_user' to group 'web'..."
 sudo adduser $new_user web
+sudo adduser ubuntu web
 
 echo "** Adding user '$new_user' to sudoers..."
 echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$new_user
