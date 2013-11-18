@@ -10,8 +10,8 @@ git_url="https://raw.github.com/chrisfargen/rig/master"
 # HOUSE CLEANING
 
 # Allow for unattended mysql installation
-echo "mysql-server-5.5 mysql-server/root_password password root" | debconf-set-selections
-echo "mysql-server-5.5 mysql-server/root_password_again password root" | debconf-set-selections
+echo "mysql-server-5.5 mysql-server/root_password password root" | sudo debconf-set-selections
+echo "mysql-server-5.5 mysql-server/root_password_again password root" | sudo debconf-set-selections
 
 echo "** Attempting to update system..."
 sudo apt-get update && sudo apt-get upgrade -y
