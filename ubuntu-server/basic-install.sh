@@ -19,6 +19,8 @@ sudo apt-get update && sudo apt-get upgrade -y
 echo "** Attempting to install packages..."
 sudo apt-get install vim git nginx mysql-server php5-mysql -y
 
+
+
 # USER SETUP
 
 echo "Copying ssh key to '/etc/skel/'..."
@@ -57,11 +59,16 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 # WEB SERVER STUFF
 
 echo "** Attempting to download fargen site manager..."
-sudo wget $git_url/ubuntu-server/fargen-site.sh -O /usr/local/bin/fargen-site
-sudo wget $git_url/bin/unlock.sh -O /usr/local/bin/unlock
-sudo wget -N $git_url/ubuntu-server/lib/fargen-vhost.conf -P /etc/nginx
-sudo wget -N $git_url/ubuntu-server/lib/basic-vhost -P /etc/nginx/sites-available
-sudo wget -N $git_url/ubuntu-server/lib/robots.txt -P /usr/share/nginx/www
+#sudo wget $git_url/ubuntu-server/fargen-site.sh -O /usr/local/bin/fargen-site
+sudo ln -sT /var/www/rig/ubuntu-server/bin/fargen-site.sh /usr/local/bin/fargen-site
+#sudo wget $git_url/bin/unlock.sh -O /usr/local/bin/unlock
+sudo ln -sT /var/www/rig/ubuntu-server/bin/unlock.sh /usr/local/bin/unlock
+#sudo wget -N $git_url/ubuntu-server/lib/fargen-vhost.conf -P /etc/nginx
+sudo ln -s /var/www/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
+#sudo wget -N $git_url/ubuntu-server/lib/basic-vhost -P /etc/nginx/sites-available
+sudo ln -s /var/www/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available
+#sudo wget -N $git_url/ubuntu-server/lib/robots.txt -P /usr/share/nginx/www
+sudo ln -s /var/www/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/
 
 echo "** Creating nginx site config..."
 sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
@@ -78,6 +85,9 @@ sudo rm -v /etc/nginx/sites-enabled/*
 
 echo "** Making link to document root..."
 sudo ln -svT /usr/share/nginx/www $dr
+
+echo "** Setting up 'rig' directory for latest scripts..."
+cd /var/www && sudo git clone https://github.com/chrisfargen/rig.git
 
 echo "** Organize vhost skel..."
 sudo mkdir -pv $dr/basic-vhost/htdocs
