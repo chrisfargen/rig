@@ -41,4 +41,3 @@ To add a site:
 
 To unlock site for editing:
 `cd /var/www/[site-name]/htdocs ; unlock
-
