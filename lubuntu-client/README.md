@@ -27,3 +27,4 @@ Some packages are best installed via a package manager (i.e., `apt-get install`)
 
 Some programs are best used with supplemental user configuration files, and there is no obvious answer to the question of how best to manage the installation, maintenance, and synchronization of such files.
 
+The goal is to prompt for password as little as possible while allowing for good security practices.
