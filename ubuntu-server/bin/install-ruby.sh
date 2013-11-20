@@ -24,6 +24,9 @@ rvm rubygems current
 echo "** Installing Rails..."
 gem install rails
 
+echo "** Installing Bundler..."
+gem install bundler
+
 echo "** Hurray!"
 
 exit 0
