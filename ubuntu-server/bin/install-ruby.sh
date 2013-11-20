@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # echo "** Installing curl..."
-sudo apt-get install curl
+sudo apt-get install curl nodejs
 
 # echo "** Installing RVM..."
 curl -L https://get.rvm.io | bash -s stable
@@ -19,7 +19,7 @@ rvm use ruby --default
 rvm rubygems current
 
 # echo "** Installing Rails..."
-rvm install rails
+gem install rails
 
 echo "** Hurray!"
 
