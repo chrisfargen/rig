@@ -10,7 +10,7 @@ day_file=$month_dir/`date +%d`.md
 if [ -z "$1" ]
 then
     echo "** Opening today's note..."
-    vi $day_file
+    vi + $day_file
 elif [ "$1" = "last" ]
 then
     # echo "** Retrieving last note..."
@@ -21,19 +21,10 @@ then
     vi $day_file
 elif [ "$1" = "add" ]
 then
-    # echo "** Create note"
+    # echo "** Creating note..."
     # Create directory corresponding to current date
     mkdir -p $month_dir
     
-    # Append header for current time
-    #cat >> $day_file <<-NewEntry
-
-
-## `date +%R`
-
-
-#NewEntry
-
     # Open document in editor
     vim + $day_file -c "$ r ! echo -e '\n\#\# '`date +\%R`'\n\n'"
 
