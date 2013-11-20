@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
+
 echo "** Installing known deps..."
 sudo apt-get install curl nodejs
 
