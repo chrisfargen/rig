@@ -14,7 +14,7 @@ echo "** Attempting to update system..."
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim git nginx mysql-server php5-mysql -y
+sudo apt-get install vim git nginx mysql-server php5-mysql curl zip -y
 
 # USER SETUP
 
