@@ -32,3 +32,12 @@ set incsearch ignorecase hlsearch
 " nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 
 inoremap <c-d> <C-R>=strftime("%F %T")<CR>
+
+" Word wrap visually
+set wrap
+
+" Only wrap at a character in the breakat option
+set linebreak
+
+" List disables linebreak
+set nolist
