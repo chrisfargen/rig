@@ -10,6 +10,7 @@ day_file=$month_dir/`date +%d`.md
 if [ -z "$1" ]
 then
     echo "** Opening today's note..."
+    mkdir -p $month_dir
     vi + $day_file
 elif [ "$1" = "last" ]
 then
