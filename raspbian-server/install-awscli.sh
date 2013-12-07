@@ -1,9 +1,17 @@
 #! /bin/bash
 
-# http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html#install-with-pip
+# http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html
+# 
+# echo "** Installing pip..."
+# sudo apt-get install python-pip
+# 
+# echo "** Installing awscli..."
+# pip install awscli
 
-echo "** Installing pip..."
-sudo apt-get install python-pip
+sudo apt-get install zip -y
 
-echo "** Installing awscli..."
-pip install awscli
+wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
+
+unzip awscli-bundle.zip
+
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
