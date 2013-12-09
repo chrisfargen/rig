@@ -2,8 +2,8 @@
 # fargen-note.sh
 
 notes_dir="$HOME/Dropbox/Notes"
-month_dir=$notes_dir/`date +%Y/%m`
-day_file=$month_dir/`date +%d`.md
+month_dir=$notes_dir/$(date +%Y/%m)
+day_file=$month_dir/$(date +%d).md
 
 # echo "** Running fargen note manager..."
 
@@ -12,6 +12,9 @@ then
     echo "** Opening today's note..."
     mkdir -p $month_dir
     vi + $day_file
+elif [ "$1" = "dir" ]
+then
+    echo $month_dir
 elif [ "$1" = "last" ]
 then
     # echo "** Retrieving last note..."
