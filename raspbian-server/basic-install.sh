@@ -6,10 +6,10 @@ git_url="https://raw.github.com/chrisfargen/rig/master"
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
-sudo apt-get update && sudo apt-get dist-upgrade -y
+sudo apt-get update ; sudo apt-get dist-upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim -y
+sudo apt-get install vim git -y
 
 # USER SETUP
 
@@ -23,6 +23,7 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a $HOME/.profile
 
 # DROPBOX STUFF
 # https://www.dropbox.com/install?os=lnx
+
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 ~/.dropbox-dist/dropboxd
@@ -32,7 +33,9 @@ sudo wget https://www.dropbox.com/download?dl=packages/dropbox.py -O /usr/local/
 sudo chmod +x /usr/local/bin/dropbox.py
 
 # SSH STUFF
+
 mkdir ~/.ssh
+
 # Make links to Dropbox keys
 cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
 

@@ -18,6 +18,9 @@ sudo apt-get install vim git nginx mysql-server php5-mysql curl zip -y
 
 # USER SETUP
 
+# in ~/.bashrc, uncomment line '#force_color_prompt=yes'
+# and log in again
+
 echo "Copying ssh key to '/etc/skel/'..."
 sudo cp -r $HOME/.ssh /etc/skel
 
