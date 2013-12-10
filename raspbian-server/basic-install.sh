@@ -37,7 +37,7 @@ mkdir ~/.ssh
 cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
 
 # AWS STUFF
-
+./install-awscli.sh
 # ...
 
 # GIT STUFF
