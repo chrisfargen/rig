@@ -46,4 +46,4 @@ chmod +x /var/www/rig/raspbian-server/make-server.sh
 
 #Copy security key (.pem file) from dropbox to '~/.ssh/'
 
-/var/www/rig/raspbian-server/make-server.sh ec20.5746.in key-2013-10-25.pem 54.214.41.91
+/var/www/rig/raspbian-server/make-server.sh ec20.5746.in ~/.ssh/key-2013-10-25.pem 54.214.41.91
