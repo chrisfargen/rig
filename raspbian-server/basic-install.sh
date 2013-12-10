@@ -6,7 +6,7 @@ git_url="https://raw.github.com/chrisfargen/rig/master"
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get dist-upgrade -y
 
 echo "** Attempting to install packages..."
 sudo apt-get install vim -y
@@ -18,8 +18,8 @@ sudo apt-get install vim -y
 echo "** Attempting to download minimal vim config..."
 wget -N $git_url/lib/.vimrc -P ~
 
-echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$USER/.profile
-echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$USER/.profile
+echo "export EDITOR=/usr/bin/vi" | sudo tee -a $HOME/.profile
+echo "export VISUAL=/usr/bin/vi" | sudo tee -a $HOME/.profile
 
 # DROPBOX STUFF
 # https://www.dropbox.com/install?os=lnx
