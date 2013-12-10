@@ -27,8 +27,23 @@ gem update --system 2.1.9
 echo "** Install Rails..."
 gem install rails --version 4.0.2
 
-echo "** Installing additional Linux-only packages..."
+echo "** Check Rails installation..."
+rails -v
+
+echo "** Install additional Linux-only packages..."
 sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev
+
+################################
+
+echo "** Install additional known reqs for passenger..."
+sudo apt-get install libcurl4-openssl-dev
+
+echo "** Install passenger..."
+gem install passenger
+
+echo "** Install nginx module..."
+rvmsudo passenger-install-nginx-module
+#passenger-install-nginx-module
 
 exit 0
 
