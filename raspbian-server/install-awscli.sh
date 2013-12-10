@@ -43,6 +43,8 @@ git clone https://github.com/chrisfargen/rig.git
 chmod +x /var/www/rig/raspbian-server/make-server.sh 
 
 #Copy security key (.pem file) from dropbox to '~/.ssh/'
-#scp -i ~/.ssh/key-2013-10-25.pem /home/chrisfargen/.ssh/key-2013-10-25.pem ubuntu@[PUBLIC DNS]:/home/ubuntu/.ssh
+#scp -i ~/.ssh/[PEM FILE FOR SCP] /home/chrisfargen/.ssh/[PEM FILE FOR SERVER TO BE] ubuntu@[PUBLIC DNS]:/home/ubuntu/.ssh
 
-/var/www/rig/raspbian-server/make-server.sh ec20.5746.in ~/.ssh/key-2013-10-25.pem 54.214.41.91
+#chmod 400 ~/.ssh/*.pem
+
+#/var/www/rig/raspbian-server/make-server.sh ec20.5746.in ~/.ssh/[PEM FILE FOR SERVER TO BE] 54.214.41.91
