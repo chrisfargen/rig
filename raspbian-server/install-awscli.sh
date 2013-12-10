@@ -25,3 +25,25 @@ mkdir -p ~/.aws
 #touch ~/.aws/config
 
 #echo "** Run 'aws ec2 describe-instances'"
+
+echo "** AWS command line tools installed! Hurray!"
+
+################################
+
+sudo apt-get install git -y
+
+sudo mkdir -p /var/www
+
+sudo chown $USER:$USER /var/www
+
+cd /var/www
+
+git clone https://github.com/chrisfargen/rig.git
+
+chmod +x /var/www/rig/raspbian-server/make-server.sh 
+
+#/var/www/rig/raspbian-server/make-server.sh 
+
+#Copy security key (.pem file) from dropbox to '~/.ssh/'
+
+/var/www/rig/raspbian-server/make-server.sh ec20.5746.in key-2013-10-25.pem 54.214.41.91
