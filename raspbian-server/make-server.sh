@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # $1 is intended host name
-# $2 is name of key pair
+# $2 is path of key pair
 # $3 is elastic ip address
 
 # Time to wait for instance to initiate
 instance_wait="90s"
 
 # Path to key file
-key_path=$(echo ~)/.ssh/$2
+key_path=$2
 
 # http://stackoverflow.com/a/192337/1351736
 me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
