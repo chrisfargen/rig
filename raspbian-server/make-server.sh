@@ -8,7 +8,7 @@
 instance_wait="90s"
 
 # Path to key file
-key_path=$2
+key_path=$HOME/.ssh/$2.pem
 
 # http://stackoverflow.com/a/192337/1351736
 me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
