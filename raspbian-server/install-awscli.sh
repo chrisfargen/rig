@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# Script for setup of "midwife" server
+# Describes minimum setup for an instance-maker
+# Have not actually run, but useful resource for entering commands manually
+
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html
 
 # echo "** Start instance..."
@@ -8,7 +12,7 @@
 
 cd ~
 
-sudo apt-get update && sudo apt-get dist-upgrade -y
+sudo apt-get update ; sudo apt-get dist-upgrade -y
 
 sudo apt-get install zip -y
 
@@ -42,9 +46,10 @@ git clone https://github.com/chrisfargen/rig.git
 
 chmod +x /var/www/rig/raspbian-server/make-server.sh 
 
-#Copy security key (.pem file) from dropbox to '~/.ssh/'
-#scp -i ~/.ssh/[PEM FILE FOR SCP] /home/chrisfargen/.ssh/[PEM FILE FOR SERVER TO BE] ubuntu@[PUBLIC DNS]:/home/ubuntu/.ssh
+# #From workstation, if workstation is different from midwife...
+# #Copy security key (.pem file) from dropbox to '~/.ssh/'
+# #scp -i ~/.ssh/[PEM FILE FOR SCP] /home/chrisfargen/.ssh/[PEM FILE FOR SERVER TO BE] ubuntu@[PUBLIC DNS]:/home/ubuntu/.ssh
+# 
+# #chmod 400 ~/.ssh/*.pem
 
-#chmod 400 ~/.ssh/*.pem
-
-#/var/www/rig/raspbian-server/make-server.sh ec20.5746.in ~/.ssh/[PEM FILE FOR SERVER TO BE] 54.214.41.91
+#/var/www/rig/raspbian-server/make-server.sh ec20.5746.in [KEYPAIR NAME WITHOUT .PEM] 54.214.41.91
