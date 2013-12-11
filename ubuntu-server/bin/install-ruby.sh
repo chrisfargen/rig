@@ -46,6 +46,8 @@ sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev
 
 ################################
 
+# NGINX INTEGRATION
+
 echo "** Install additional known reqs for passenger..."
 sudo apt-get install libcurl4-openssl-dev
 
@@ -57,6 +59,22 @@ rvmsudo passenger-install-nginx-module
 #passenger-install-nginx-module
 
 exit 0
+
+echo "** Create shortcut to nginx..."
+# https://library.linode.com/web-servers/nginx/installation/ubuntu-12.04-precise-pangolin#sph_create-an-init-script-to-manage-nginx
+#
+# wget -O init-deb.sh http://library.linode.com/assets/1139-init-deb.sh
+# mv init-deb.sh /etc/init.d/nginx
+# chmod +x /etc/init.d/nginx
+# /usr/sbin/update-rc.d -f nginx defaults
+
+echo "** Add this code somewhere..."
+# server {
+#         listen 80;
+#         server_name www.yourhost.com;
+#         root /somewhere/public;   # <--- be sure to point to 'public'!
+#         passenger_enabled on;
+# }
 
 # # https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
 # 
