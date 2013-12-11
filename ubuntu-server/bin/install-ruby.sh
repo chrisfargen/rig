@@ -61,7 +61,6 @@ gem install passenger
 
 echo "** Install nginx module..."
 rvmsudo passenger-install-nginx-module
-#passenger-install-nginx-module
 
 exit 0
 
