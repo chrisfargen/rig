@@ -7,7 +7,7 @@ curl -L https://get.rvm.io | bash -s
 
 echo "** If RVM installed successfully, log out and run this again..."
 
-read rvmgood -p "** Continue? [Y/n]"
+read -p "** Continue? [Y/n] " rvmgood
 
 if [ "$rvmgood" != "y" ]
 then
