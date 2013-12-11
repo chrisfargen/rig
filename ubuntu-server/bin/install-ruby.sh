@@ -54,6 +54,10 @@ sudo apt-get install libcurl4-openssl-dev
 echo "** Install passenger..."
 gem install passenger
 
+# UNINSTALL NGINX IF INSTALLED
+# http://www.modrails.com/documentation/Users%20guide%20Nginx.html#rubygems_generic_install
+# TODO: COMBINE THIS FILE AND basic-install
+
 # # Add swap
 # sudo dd if=/dev/zero of=/swap bs=1M count=1024
 # sudo mkswap /swap
