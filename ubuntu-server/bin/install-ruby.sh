@@ -42,7 +42,7 @@ echo "** Check Rails installation..."
 rails -v
 
 echo "** Install additional Linux-only packages..."
-sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev
+sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev nodejs
 
 ################################
 
@@ -53,6 +53,11 @@ sudo apt-get install libcurl4-openssl-dev
 
 echo "** Install passenger..."
 gem install passenger
+
+# # Add swap
+# sudo dd if=/dev/zero of=/swap bs=1M count=1024
+# sudo mkswap /swap
+# sudo swapon /swap
 
 echo "** Install nginx module..."
 rvmsudo passenger-install-nginx-module
