@@ -5,6 +5,17 @@
 echo "** Install RVM..."
 curl -L https://get.rvm.io | bash -s
 
+echo "** If RVM installed successfully, log out and run this again..."
+
+read rvmgood -p "** Continue? [Y/n]"
+
+if [ "$rvmgood" != "y" ]
+then
+    exit 255
+fi
+
+# LOG OUT AND BACK IN!
+
 echo "** Review requirements..."
 rvm requirements
 
