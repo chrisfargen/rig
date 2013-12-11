@@ -11,8 +11,7 @@ echo "mysql-server-5.5 mysql-server/root_password password root" | sudo debconf-
 echo "mysql-server-5.5 mysql-server/root_password_again password root" | sudo debconf-set-selections
 
 echo "** Attempting to update system..."
-sudo apt-get update
-sudo apt-get dist-upgrade -y
+sudo apt-get update ; sudo apt-get dist-upgrade -y
 
 echo "** Attempting to install packages..."
 sudo apt-get install vim git nginx mysql-server php5-mysql curl zip -y

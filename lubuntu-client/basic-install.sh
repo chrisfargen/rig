@@ -5,13 +5,13 @@ git_url="https://raw.github.com/chrisfargen/rig/master"
 
 # ADD REPOS
 
-echo "** Addding repos..."
+echo "** Adding repos..."
 sudo add-apt-repository ppa:audacity-team/daily
 
 # HOUSE CLEANING
 
 echo "** Attempting to update system..."
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update ; sudo apt-get dist-upgrade -y
 
 echo "** Attempting to install packages..."
 sudo apt-get install vim git audacity sqlite3 sox libnotify-bin -y
