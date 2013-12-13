@@ -56,6 +56,11 @@ cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
 # GOOGLE STUFF
 # https://code.google.com/p/googlecl/wiki/Install
 
+cd ~ ; wget https://googlecl.googlecode.com/files/googlecl_0.9.14-2_all.deb
+
+sudo dpkg -i googlecl_0.9.14-2_all.deb
+
+
 # ...
 
 # ELINKS STUFF
