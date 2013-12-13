@@ -14,7 +14,10 @@ echo "** Attempting to update system..."
 sudo apt-get update ; sudo apt-get dist-upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim git nginx mysql-server php5-mysql curl zip -y
+sudo apt-get install vim git nginx mysql-server anacron php5-mysql curl zip -y
+
+#echo "** Attempting to install autoupdate script..."
+#
 
 # USER SETUP
 
