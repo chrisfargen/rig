@@ -3,6 +3,7 @@
 # Hostname
 host_name="hostname.example1.com"
 dr="/var/www"
+rig_url="https://github.com/chrisfargen/rig.git"
 
 # HOUSE CLEANING
 
@@ -10,10 +11,10 @@ dr="/var/www"
 echo "mysql-server-5.5 mysql-server/root_password password root" | sudo debconf-set-selections
 echo "mysql-server-5.5 mysql-server/root_password_again password root" | sudo debconf-set-selections
 
-echo "** Attempting to update system..."
+echo "** Update system..."
 sudo apt-get update ; sudo apt-get dist-upgrade -y
 
-echo "** Attempting to install packages..."
+echo "** Install packages..."
 sudo apt-get install vim git nginx mysql-server anacron php5-mysql curl zip -y
 
 #echo "** Attempting to install autoupdate script..."
@@ -49,6 +50,14 @@ sudo hostname $host_name
 echo $host_name | sudo tee /etc/hostname
 echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 
+# TODO: COME BACK HERE 12/13
+
+echo "** Make link to document root..."
+sudo ln -sv -T /usr/share/nginx/www $dr
+
+echo "** Clone rig..."
+cd /var/www ; git clone $rig_url
+
 # VIM STUFF
 
 echo "** Attempting to download minimal vim config..."
@@ -78,9 +87,6 @@ sudo chmod -v +x /usr/local/bin/fargen-site /usr/local/bin/unlock
 
 echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
-
-echo "** Making link to document root..."
-sudo ln -svT /usr/share/nginx/www $dr
 
 echo "** Setting up 'rig' directory for latest scripts..."
 cd $dr && sudo git clone https://github.com/chrisfargen/rig.git
