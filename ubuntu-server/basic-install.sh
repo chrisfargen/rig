@@ -146,6 +146,14 @@ else
     echo "** Test site not enabled."
 fi
 
+echo <<-EOM
+** Info:
+Host $1
+HostName $(curl http://169.254.169.254/latest/meta-data/public-hostname)
+User $new_user
+# Fix below
+#IdentityFile /home/$new_user/.ssh/$2.pem
+
 echo "** Hurray!"
 
 exit 0
