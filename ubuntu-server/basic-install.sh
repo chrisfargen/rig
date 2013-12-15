@@ -68,7 +68,7 @@ echo "force_color_prompt=yes" | sudo tee -a /home/$new_user/.bashrc
 
 # WEB SERVER STUFF
 
-echo "** Attempt to download fargen site manager..."
+echo "** Attempt to symlink rig tools"
 sudo ln -s -v -T $dr/rig/ubuntu-server/bin/fargen-site.sh /usr/local/bin/fargen-site
 sudo ln -s -v -T $dr/rig/ubuntu-server/bin/unlock.sh /usr/local/bin/unlock
 sudo ln -s -v $dr/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
@@ -76,11 +76,11 @@ sudo ln -s -v $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available/
 sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/
 
 echo "** Create nginx site config..."
-sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
+sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
 
 sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
 
-sed "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" /etc/php5/fpm/pool.d/www.conf | sudo dd of=/etc/php5/fpm/pool.d/www.conf
+sudo sed "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" /etc/php5/fpm/pool.d/www.conf | sudo dd of=/etc/php5/fpm/pool.d/www.conf
 
 echo "** Set permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site /usr/local/bin/unlock
