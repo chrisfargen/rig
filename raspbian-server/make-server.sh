@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# NOTE: This script only works when there
+# is no instance with the given elastic IP
+
 # $1 is intended host name
 # $2 is path of key pair
 # $3 is elastic ip address
@@ -53,7 +56,7 @@ echo "** Sleeping $instance_wait while instance initiates..."
 sleep $instance_wait
 
 echo "** Attempting to associate address $3..."
-aws ec2 associate-address --instance-id $last_instance_id --public-ip $3 --output text --allow-reassociation
+aws ec2 associate-address --instance-id $last_instance_id --public-ip $3 --output text 
 
 # wget / chmod / execute
 
