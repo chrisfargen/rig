@@ -77,7 +77,7 @@ sudo ln -s -v -T $dr/rig/ubuntu-server/bin/fargen-site.sh /usr/local/bin/fargen-
 sudo ln -s -v -T $dr/rig/ubuntu-server/bin/unlock.sh /usr/local/bin/unlock
 sudo ln -s -v $dr/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
 sudo ln -s -v $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available/
-sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/www/
+sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt $dr
 
 echo "** Create nginx site config..."
 sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
