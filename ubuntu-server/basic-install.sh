@@ -52,18 +52,20 @@ echo "** Make link to document root..."
 sudo ln -s -v -T /usr/share/nginx/www $dr
 
 echo "** Clone rig..."
-cd $dr/ ; sudo git clone $rig_url
+cd $dr ; sudo git clone $rig_url
 
 # VIM STUFF
 
-echo "** Attempt to download minimal vim config..."
+echo "** Install minimal vim config..."
 sudo ln -s -v /var/www/rig/lib/.vimrc /home/$new_user/
 
 # .profile
+sudo touch /home/$new_user/.profile
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 # .bashrc
+sudo touch /home/$new_user/.bashrc
 echo "force_color_prompt=yes" | sudo tee -a /home/$new_user/.bashrc
 
 # WEB SERVER STUFF
@@ -73,7 +75,7 @@ sudo ln -s -v -T $dr/rig/ubuntu-server/bin/fargen-site.sh /usr/local/bin/fargen-
 sudo ln -s -v -T $dr/rig/ubuntu-server/bin/unlock.sh /usr/local/bin/unlock
 sudo ln -s -v $dr/rig/ubuntu-server/lib/fargen-vhost.conf /etc/nginx/
 sudo ln -s -v $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available/
-sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/
+sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt /usr/share/nginx/www/
 
 echo "** Create nginx site config..."
 sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
