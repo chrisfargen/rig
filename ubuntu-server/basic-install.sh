@@ -153,6 +153,7 @@ HostName $(curl http://169.254.169.254/latest/meta-data/public-hostname)
 User $new_user
 # Fix below
 #IdentityFile /home/$new_user/.ssh/$2.pem
+EOM
 
 echo "** Hurray!"
 

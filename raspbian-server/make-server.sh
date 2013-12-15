@@ -85,6 +85,9 @@ sed -i "s/hostname.example1.com/$1/g" ~/bin/basic-install.sh
 echo "** Attemping to SCP script to server..."
 scp -i $key_path ~/bin/basic-install.sh ubuntu@$3:~/basic-install
 
+echo "** Once logged in, run:"
+echo "** /home/ubuntu/basic-install"
+
 echo "** Attempting to SSH into server..."
 ssh -i $key_path ubuntu@$3
 
