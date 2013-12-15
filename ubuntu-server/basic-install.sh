@@ -157,11 +157,10 @@ fi
 
 cat <<EOM
 ** Info:
-Host $1
+Host $(date +%F-%H-%m%s)
 HostName $(curl http://169.254.169.254/latest/meta-data/public-hostname)
 User $new_user
-# Fix below
-#IdentityFile /home/$new_user/.ssh/$2.pem
+#IdentityFile ~/.ssh/$2.pem
 EOM
 
 echo "** Hurray!"
