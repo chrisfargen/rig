@@ -80,8 +80,16 @@ sudo ln -s -v $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available/
 sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt $dr
 
 echo "** Create nginx site config..."
+echo "** ** BEFORE: "
+cat /etc/nginx/sites-available/basic-vhost
+echo "** ** THEN..."
 sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
+echo "** ** AFTER: "
+cat /etc/nginx/sites-available/basic-vhost
 
+#echo "** Create nginx site config..."
+#sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
+ 
 sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
 
 sudo sed "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" /etc/php5/fpm/pool.d/www.conf | sudo dd of=/etc/php5/fpm/pool.d/www.conf
