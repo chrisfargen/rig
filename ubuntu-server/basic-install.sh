@@ -61,12 +61,14 @@ sudo ln -s -v /var/www/rig/lib/.vimrc /home/$new_user/
 
 # .profile
 sudo touch /home/$new_user/.profile
-echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
+echo -e "\nexport EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 # .bashrc
 sudo touch /home/$new_user/.bashrc
-echo "force_color_prompt=yes" | sudo tee -a /home/$new_user/.bashrc
+#echo "force_color_prompt=yes" | sudo tee -a /home/$new_user/.bashrc
+sudo sed "s/#force_color_prompt=yes/force_color_prompt=yes/g" /home/$new_user/.bashrc | sudo dd of=/home/$new_user/.bashrc
+
 
 # WEB SERVER STUFF
 
@@ -145,7 +147,7 @@ else
     echo "** Test site not enabled."
 fi
 
-echo <<-EOM
+cat <<EOM
 ** Info:
 Host $1
 HostName $(curl http://169.254.169.254/latest/meta-data/public-hostname)
