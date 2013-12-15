@@ -52,7 +52,7 @@ echo "** Make link to document root..."
 sudo ln -s -v -T /usr/share/nginx/www $dr
 
 echo "** Clone rig..."
-cd /var/www/ ; sudo git clone $rig_url
+cd $dr/ ; sudo git clone $rig_url
 
 # VIM STUFF
 
@@ -88,11 +88,8 @@ sudo chmod -v +x /usr/local/bin/fargen-site /usr/local/bin/unlock
 echo "** Disable default enabled site..."
 sudo rm -v /etc/nginx/sites-enabled/*
 
-echo "** Set up 'rig' directory for latest scripts..."
-cd $dr && sudo git clone https://github.com/chrisfargen/rig.git
-
 echo "** Organize vhost skel..."
-sudo mkdir -p -v $dr/basic-vhost/htdocs/
+sudo mkdir -p -v $dr/basic-vhost/htdocs
 sudo cp -v $dr/index.html $dr/basic-vhost/htdocs/
 sudo cp -v $dr/robots.txt $dr/basic-vhost/htdocs/
 
