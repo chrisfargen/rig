@@ -52,12 +52,12 @@ echo "** Make link to document root..."
 sudo ln -s -v -T /usr/share/nginx/www $dr
 
 echo "** Clone rig..."
-cd /var/www ; git clone $rig_url
+cd /var/www/ ; git clone $rig_url
 
 # VIM STUFF
 
 echo "** Attempt to download minimal vim config..."
-sudo ln -s -v -T /var/www/rig/ubuntu-server/lib/.vimrc /home/$new_user/
+sudo ln -s -v /var/www/rig/ubuntu-server/lib/.vimrc /home/$new_user/
 
 # .profile
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
