@@ -53,7 +53,7 @@ echo "** Sleeping $instance_wait while instance initiates..."
 sleep $instance_wait
 
 echo "** Attempting to associate address $3..."
-aws ec2 associate-address --instance-id $last_instance_id --public-ip $3 --output text
+aws ec2 associate-address --instance-id $last_instance_id --public-ip $3 --output text --allow-reassociation
 
 # wget / chmod / execute
 
