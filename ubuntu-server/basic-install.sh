@@ -52,7 +52,7 @@ echo "** Make link to document root..."
 sudo ln -s -v -T /usr/share/nginx/www $dr
 
 echo "** Clone rig..."
-cd /var/www/ ; git clone $rig_url
+cd /var/www/ ; sudo git clone $rig_url
 
 # VIM STUFF
 
