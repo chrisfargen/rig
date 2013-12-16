@@ -9,28 +9,28 @@ echo "** Fargen Site (nginx site manager) initiated!"
 
 if [ "$1" = "add" ]
 then
-    echo "** Attempting to add site..."
+    echo "** Add site..."
     # TODO: Validate name using grep and regular expressions
     if [ ! -z "$2" ]
     #if [[ "$2" =~ "^[a-zA-Z0-9_]+$" ]]
     #if
     then
-        echo "** Creating nginx site config..."
+        echo "** Create nginx site config..."
         sed "s/basic-vhost/$2/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/$2
 
-        echo "** Creating folder for document root..."
+        echo "** Create folder for document root..."
         #sudo mkdir -pv /usr/share/nginx/www/$2
 	sudo cp -rpT /usr/share/nginx/www/basic-vhost /usr/share/nginx/www/$2
 
-        echo "** Adding some test text..."
+        echo "** Add some test text..."
         #sed "s/nginx/$2/g" /usr/share/nginx/www/index.html | sudo tee /usr/share/nginx/www/$2/index.html
 	sudo sed -i "s/nginx/$2/g" /usr/share/nginx/www/$2/htdocs/index.html
 
-        echo "** Would you like to enable this site? (y/n)"
+        echo "** Would you like to enable this site? [Y/n]"
         read fargen_enable
         if [ $fargen_enable = "y" ]
         then
-            echo "** Attempting to enable..."
+            echo "** Attempt to enable..."
             sudo ln -sv /etc/nginx/sites-available/$2 /etc/nginx/sites-enabled/$2
             sudo service nginx reload
         else
@@ -41,7 +41,7 @@ then
     fi
 elif [ "$1" = "rm" ]
 then
-    echo "** Attempting to remove..."
+    echo "** Attempt to remove..."
 else
     echo "** What to do?"
 fi
