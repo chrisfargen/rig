@@ -63,8 +63,8 @@ echo -e "\nexport EDITOR=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 # .bashrc
-sudo touch /home/$new_user/.bashrc
-sudo sed "s/#force_color_prompt=yes/force_color_prompt=yes/g" /home/$new_user/.bashrc | sudo dd of=/home/$new_user/.bashrc
+cd /home/$new_user
+sudo sed -e "s/#force_color_prompt=yes/force_color_prompt=yes/g" .bashrc | sudo dd of=.bashrc.tmp && sudo mv .bashrc.tmp .bashrc
 
 
 # WEB SERVER STUFF
@@ -78,7 +78,7 @@ sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt $dr
 
 echo "** Create nginx site config..."
 
-cd /etc/nginx/sites-available ; sudo sed "s/hostname.example2.com/$host_name/g" basic-vhost | sudo dd of=basic-vhost.tmp && sudo mv basic-vhost.tmp basic-vhost
+cd /etc/nginx/sites-available ; sudo sed -e "s/hostname.example2.com/$host_name/g" basic-vhost | sudo dd of=basic-vhost.tmp && sudo mv basic-vhost.tmp basic-vhost
 
 cd /etc/php5/fpm ; sed -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" php.ini | sudo dd of=php.ini.tmp && sudo mv php.ini.tmp php.ini
 
