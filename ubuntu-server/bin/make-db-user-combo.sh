@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# http://www.debuntu.org/how-to-create-a-mysql-database-and-set-privileges-to-a-user/
+
 if [ "$1" == "ls" ]
 then
     mysql -D SOME_DATABASE -u root -p -e "\
