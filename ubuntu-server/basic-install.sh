@@ -38,12 +38,12 @@ sudo adduser $new_user web
 sudo adduser ubuntu web
 
 echo "** Add user '$new_user' to sudoers..."
-echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$new_user
+echo "$new_user ALL=(ALL) NOPASSWD:ALL" | sudo dd of=/etc/sudoers.d/$new_user
 sudo chmod -v 440 /etc/sudoers.d/$new_user
 
 echo "** Change host name to '$host_name'..."
 sudo hostname $host_name
-echo $host_name | sudo tee /etc/hostname
+echo $host_name | sudo dd of=/etc/hostname
 echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 
 echo "** Make link to document root..."
@@ -77,24 +77,12 @@ sudo cp -v $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available/
 sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt $dr
 
 echo "** Create nginx site config..."
-cd /etc/nginx/sites-available
-echo "** ** BEFORE: "
-cat basic-vhost
-echo "** ** THEN..."
-sudo sed "s/hostname.example2.com/$host_name/g" basic-vhost | sudo tee basic-vhost.tmp && sudo mv basic-vhost.tmp basic-vhost
-echo "** ** AFTER: "
-cat basic-vhost
 
-cd /etc/php5/fpm ; sed -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" php.ini | sudo tee php.ini.tmp && sudo mv php.ini.tmp php.ini
+cd /etc/nginx/sites-available ; sudo sed "s/hostname.example2.com/$host_name/g" basic-vhost | sudo dd of=basic-vhost.tmp && sudo mv basic-vhost.tmp basic-vhost
 
-cd /etc/php5/fpm/pool.d ; sed -e "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" www.conf | sudo tee www.conf.tmp && sudo mv www.conf.tmp www.conf
+cd /etc/php5/fpm ; sed -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" php.ini | sudo dd of=php.ini.tmp && sudo mv php.ini.tmp php.ini
 
-#echo "** Create nginx site config..."
-#sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
- 
-#sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
-
-#sudo sed "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" /etc/php5/fpm/pool.d/www.conf | sudo dd of=/etc/php5/fpm/pool.d/www.conf
+cd /etc/php5/fpm/pool.d ; sed -e "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" www.conf | sudo dd of=www.conf.tmp && sudo mv www.conf.tmp www.conf
 
 echo "** Set permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site /usr/local/bin/unlock
@@ -151,7 +139,7 @@ if [ "$enable_test_site" = "y" ]
 then
     sudo service nginx start
     fargen-site add bourbon
-    echo "<?php phpinfo() ?>" | sudo tee /var/www/bourbon/htdocs/index.php
+    echo "<?php phpinfo() ?>" | sudo dd of=/var/www/bourbon/htdocs/index.php
 
 else
     echo "** Test site not enabled."
