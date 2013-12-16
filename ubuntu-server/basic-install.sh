@@ -46,8 +46,6 @@ sudo hostname $host_name
 echo $host_name | sudo tee /etc/hostname
 echo -e "127.0.1.1\t$host_name" | sudo tee -a /etc/hosts
 
-# TODO: COME BACK HERE 12/13
-
 echo "** Make link to document root..."
 sudo ln -s -v -T /usr/share/nginx/www $dr
 
@@ -66,7 +64,6 @@ echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$new_user/.profile
 
 # .bashrc
 sudo touch /home/$new_user/.bashrc
-#echo "force_color_prompt=yes" | sudo tee -a /home/$new_user/.bashrc
 sudo sed "s/#force_color_prompt=yes/force_color_prompt=yes/g" /home/$new_user/.bashrc | sudo dd of=/home/$new_user/.bashrc
 
 
@@ -80,19 +77,24 @@ sudo cp -v $dr/rig/ubuntu-server/lib/basic-vhost /etc/nginx/sites-available/
 sudo ln -s -v $dr/rig/ubuntu-server/lib/robots.txt $dr
 
 echo "** Create nginx site config..."
+cd /etc/nginx/sites-available
 echo "** ** BEFORE: "
-cat /etc/nginx/sites-available/basic-vhost
+cat basic-vhost
 echo "** ** THEN..."
-sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
+sudo sed "s/hostname.example2.com/$host_name/g" basic-vhost | sudo tee basic-vhost.tmp && sudo mv basic-vhost.tmp basic-vhost
 echo "** ** AFTER: "
-cat /etc/nginx/sites-available/basic-vhost
+cat basic-vhost
+
+cd /etc/php5/fpm ; sed -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" php.ini | sudo tee php.ini.tmp && sudo mv php.ini.tmp php.ini
+
+cd /etc/php5/fpm/pool.d ; sed -e "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" www.conf | sudo tee www.conf.tmp && sudo mv www.conf.tmp www.conf
 
 #echo "** Create nginx site config..."
 #sudo sed "s/hostname.example2.com/$host_name/g" /etc/nginx/sites-available/basic-vhost | sudo tee /etc/nginx/sites-available/basic-vhost
  
-sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
+#sudo sed "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini | sudo dd of=/etc/php5/fpm/php.ini
 
-sudo sed "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" /etc/php5/fpm/pool.d/www.conf | sudo dd of=/etc/php5/fpm/pool.d/www.conf
+#sudo sed "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g" /etc/php5/fpm/pool.d/www.conf | sudo dd of=/etc/php5/fpm/pool.d/www.conf
 
 echo "** Set permissions on script..."
 sudo chmod -v +x /usr/local/bin/fargen-site /usr/local/bin/unlock
