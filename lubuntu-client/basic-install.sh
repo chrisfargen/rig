@@ -14,7 +14,7 @@ echo "** Attempting to update system..."
 sudo apt-get update ; sudo apt-get dist-upgrade -y
 
 echo "** Attempting to install packages..."
-sudo apt-get install vim git audacity sqlite3 sox libnotify-bin -y
+sudo apt-get install vim git audacity sqlite3 sox libnotify-bin rdiff-backup -y
 
 # USER SETUP
 
