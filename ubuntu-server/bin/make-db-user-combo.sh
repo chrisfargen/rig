@@ -2,6 +2,9 @@
 
 # http://www.debuntu.org/how-to-create-a-mysql-database-and-set-privileges-to-a-user/
 
+# CODE NOT CURRENTLY WORKING; MYSQL SYNTAX BAD
+# HOWEVER, COMMANDS ARE VALID
+
 if [ "$1" == "ls" ]
 then
     mysql -D SOME_DATABASE -u root -p -e "select ID, user_login from SOME_DATABASE.SOME_TABLE;"
@@ -15,7 +18,7 @@ fi
 
 read -s -p "Input new db password: " db_pw
 
-echo -e "\n\n** Input root password..."
+echo -e "\n** Input root password..."
 
 mysql -u root -p -e "create database $1;
 grant usage on *.* to $1@localhost identified by '$db_pw';
