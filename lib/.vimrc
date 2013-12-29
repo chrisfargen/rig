@@ -41,3 +41,7 @@ set linebreak
 
 " List disables linebreak
 set nolist
+
+" For markdown
+" See http://stackoverflow.com/questions/10964681/enabling-markdown-highlighting-in-vim
+au BufRead,BufNewFile *.md set filetype=markdown
