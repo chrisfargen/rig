@@ -2,6 +2,7 @@
 
 # Shortcut to path
 git_url="https://raw.github.com/chrisfargen/rig/master"
+rig_url="https://github.com/chrisfargen/rig.git"
 
 # ADD REPOS
 
@@ -16,12 +17,27 @@ sudo apt-get update ; sudo apt-get dist-upgrade -y
 echo "** Attempting to install packages..."
 sudo apt-get install vim git audacity sqlite3 sox libnotify-bin rdiff-backup -y
 
+# PROJECT DIRECTORY STUFF
+
+echo "** Creating document root..."
+sudo mkdir -pv /var/www
+
+echo "** Changing ownership on document root..."
+sudo chown -Rv $USER:$USER /var/www
+
+echo "** Adding sticky bit to document root..."
+sudo chmod g+rwxs /var/www
+
 # USER SETUP
 
 # VIM STUFF
 
-echo "** Attempting to download minimal vim config..."
-wget -N $git_url/lib/.vimrc -P ~
+#echo "** Attempting to download minimal vim config..."
+#wget -N $git_url/lib/.vimrc -P ~
+
+cd /var/www
+sudo git clone $rig_url
+
 
 echo "export EDITOR=/usr/bin/vi" | sudo tee -a /home/$USER/.profile
 echo "export VISUAL=/usr/bin/vi" | sudo tee -a /home/$USER/.profile
@@ -74,20 +90,9 @@ wget -N $git_url/lubuntu-client/lib/rc.xml
 # SSH STUFF
 mkdir ~/.ssh
 # Make links to Dropbox keys
-cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
+#cp -sfv ~/Dropbox/.ssh/*.pem ~/.ssh
+cp -vfs $HOME/Dropbox/system/home/chrisfargen/.ssh/*.pem $HOME/.ssh
 
-
-
-# PROJECT DIRECTORY STUFF
-
-echo "** Creating document root..."
-sudo mkdir -pv /var/www
-
-echo "** Changing ownership on document root..."
-sudo chown -Rv $USER:$USER /var/www
-
-echo "** Adding sticky bit to document root..."
-sudo chmod g+rwxs /var/www
 
 echo "** Hurray!"
 
