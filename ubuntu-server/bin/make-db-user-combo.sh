@@ -20,8 +20,8 @@ read -s -p "Input new db password: " db_pw
 
 echo -e "\n** Input root password..."
 
-mysql -u root -p -e "create database $1;
-grant usage on *.* to $1@localhost identified by '$db_pw';
+mysql -u root -p -e "create database $1; \
+grant usage on *.* to $1@localhost identified by '$db_pw'; \
 grant all privileges on $1.* to $1@localhost;"
 
 echo "** Check newly-made credentials..."
